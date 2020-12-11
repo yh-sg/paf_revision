@@ -1,0 +1,60 @@
+<h1>SubTodo</h1>
+
+<form [formGroup]="form" (ngSubmit)="add()">
+
+    <div class="form-group">
+        <label>Name:</label>
+        <input type="text" class="form-control" formControlName="subname">
+      </div>
+
+    <div>Priority:</div>
+
+    <div class="form-check">
+    <input class="form-check-input" type="radio" name="subpriority" value="High" checked formControlName="subpriority">
+    <label>
+        High
+    </label>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="subpriority" value="Mid" formControlName="subpriority">
+        <label>
+        Mid
+        </label>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="subpriority" value="Low" formControlName="subpriority">
+        <label>
+        Low
+        </label>
+    </div>
+
+    <button type="submit" class="btn btn-outline-primary" [disabled]="form.invalid">Submit</button>
+
+</form>
+
+<hr>
+
+<table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Priority</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of array; let i=index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{item.subname}}</td>
+        <td>{{item.subpriority}}</td>
+        <td><button class="btn btn-outline-success" (click)="edit(item.sub_id)">Edit</button></td>
+        <td><button class="btn btn-outline-danger" (click)="delete(item.sub_id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="btn btn-outline-warning" (click)="backtoTodo()">Back</button>
